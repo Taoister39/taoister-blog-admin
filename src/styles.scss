@@ -5,3 +5,16 @@
 @use 'styles/grid';
 @use 'styles/helpers';
 @use 'styles/plugins';
+
+@import 'prismjs/themes/prism-okaidia.css';
+@import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+@import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
+
+blockquote {
+  background: rgba(10, 133, 255, 0.14);
+  border-left: 4px solid #0066cc;
+  border-radius: 4px;
+  color: #666;
+  margin: 20px 0;
+  padding: 1px 20px;
+}

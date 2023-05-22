@@ -32,6 +32,18 @@
           "type": "link"
         }
       ]
+    },
+    {
+      "route": "about",
+      "name": "about",
+      "type": "link",
+      "icon": "info"
+    },
+    {
+      "route": "profile",
+      "name": "profile",
+      "type": "link",
+      "icon": "perm_device_information"
     }
   ]
 }

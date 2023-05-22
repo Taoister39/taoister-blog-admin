@@ -11,6 +11,8 @@ import { Error403Component } from './sessions/403.component';
 import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
 import { AuthGuard } from '@core';
+import { AboutComponent } from 'app/routes/about/about.component';
+import { ProfileComponent } from 'app/routes/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -20,10 +22,21 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
       { path: '403', component: Error403Component },
       { path: '404', component: Error404Component },
       { path: '500', component: Error500Component },
+      {
+        path: 'about',
+        component: AboutComponent,
+      },
     ],
   },
   {
