@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   baseUrl: '',
   useHash: false,
+  adminApiUrl: 'http://localhost:9090',
 };
 
 /*
