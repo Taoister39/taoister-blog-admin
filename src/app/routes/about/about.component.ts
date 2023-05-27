@@ -1,4 +1,3 @@
-import { DIR_DOCUMENT } from '@angular/cdk/bidi';
 import { AboutService } from './../../services/about.service';
 import { Component, OnInit } from '@angular/core';
 
