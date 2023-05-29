@@ -1,1 +1,73 @@
-<p>profile works!</p>
+<mat-card>
+  <mat-card-header class="m-b-16">
+    <mat-card-title>編輯首頁信息</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="reactiveForm" (ngSubmit)="submit()" class="form-field-full">
+      <div class="row">
+        <div class="col-sm-6 col-x-4">
+          <mat-form-field>
+            <mat-label> author - 作者</mat-label>
+            <input matInput placeholder="作者" formControlName="author" />
+            <mat-error *ngIf="reactiveForm.get('author')?.status">請輸入作者</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6 col-x-4">
+          <mat-form-field>
+            <mat-label> slogan - 個性簽名</mat-label>
+            <input matInput placeholder="個性簽名" formControlName="slogan" />
+            <mat-error *ngIf="reactiveForm.get('slogan')?.status">請輸入個性簽名</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6 col-x-4">
+          <mat-form-field>
+            <mat-label> email - 個人郵箱</mat-label>
+            <input matInput placeholder="個人郵箱" formControlName="email" />
+            <mat-error *ngIf="reactiveForm.get('email')?.status">請輸入個人郵箱</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6 col-x-4">
+          <mat-form-field>
+            <mat-label> site - 個人網站</mat-label>
+            <input matInput placeholder="個性簽名" formControlName="site" />
+            <mat-error *ngIf="reactiveForm.get('site')?.status">請輸入個人網站</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6 col-x-4">
+          <mat-form-field>
+            <mat-label> github</mat-label>
+            <input matInput placeholder="github" formControlName="github" />
+            <mat-error *ngIf="reactiveForm.get('github')?.status">請輸入github首頁</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6 col-x-4">
+          <mat-form-field>
+            <mat-label> twitter</mat-label>
+            <input matInput placeholder="twitter" formControlName="twitter" />
+            <mat-error *ngIf="reactiveForm.get('twitter')?.status">請輸入twitter首頁</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6 col-x-4">
+          <mat-form-field>
+            <mat-label> avatar - 圖片名稱</mat-label>
+            <input matInput placeholder="圖片名稱" formControlName="avatar" />
+            <mat-error *ngIf="reactiveForm.get('avatar')?.status">請輸入要用的圖片名稱</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end form-functions">
+        <button mat-raised-button color="primary" type="submit">提交</button>
+        <button mat-raised-button (click)="reset()">重置</button>
+        <button mat-raised-button (click)="fillProfile()">補全當前</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

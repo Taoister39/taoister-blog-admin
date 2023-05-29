@@ -44,6 +44,12 @@
       "name": "profile",
       "type": "link",
       "icon": "perm_device_information"
+    },
+    {
+      "route": "article",
+      "name": "article",
+      "type": "sub",
+      "children": []
     }
   ]
 }
