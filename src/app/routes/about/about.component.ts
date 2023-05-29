@@ -10,12 +10,14 @@ export class AboutComponent implements OnInit {
   constructor(private aboutService: AboutService) {}
 
   private id!: string;
+  private content!: string;
+
   public markdown = '';
 
   ngOnInit(): void {
     this.aboutService.getAbout().subscribe(data => {
       this.id = data.id;
-      this.markdown = data.content;
+      this.content = data.content;
     });
   }
   handleSaveAbout() {
@@ -27,9 +29,7 @@ export class AboutComponent implements OnInit {
     }
   }
   handleGetAbout() {
-    this.aboutService.getAbout().subscribe(data => {
-      this.markdown = data.content;
-    });
+    this.markdown = this.content;
   }
 
   loadFileMd(inputRef: HTMLInputElement) {
