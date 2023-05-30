@@ -12,7 +12,7 @@ describe('Token', () => {
 
     const exp = currentTimestamp() + 3600;
     const token = new JwtToken({
-      access_token: generateToken({ exp }, 'at+JWT'),
+      token: generateToken({ exp }, 'at+JWT'),
       token_type: 'Bearer',
     });
 
@@ -33,7 +33,7 @@ describe('Token', () => {
     });
 
     it('test does not has exp attribute', () => {
-      const token = new JwtToken({ access_token: generateToken({}), token_type: 'Bearer' });
+      const token = new JwtToken({ token: generateToken({}), token_type: 'Bearer' });
 
       expect(token.exp).toBeUndefined();
     });

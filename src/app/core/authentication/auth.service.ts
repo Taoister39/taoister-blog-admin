@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, iif, merge, of } from 'rxjs';
+import { BehaviorSubject, iif, merge, of, Observable } from 'rxjs';
 import { catchError, map, share, switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
 import { LoginService } from './login.service';
@@ -12,8 +12,8 @@ import { User } from './interface';
 export class AuthService {
   private user$ = new BehaviorSubject<User>({});
   private change$ = merge(
-    this.tokenService.change(),
-    this.tokenService.refresh().pipe(switchMap(() => this.refresh()))
+    this.tokenService.change()
+    // this.tokenService.refresh().pipe(switchMap(() => this.refresh()))
   ).pipe(
     switchMap(() => this.assignUser()),
     share()
@@ -41,17 +41,24 @@ export class AuthService {
   }
 
   refresh() {
-    return this.loginService
-      .refresh(filterObject({ refresh_token: this.tokenService.getRefreshToken() }))
-      .pipe(
-        catchError(() => of(undefined)),
-        tap(token => this.tokenService.set(token)),
-        map(() => this.check())
-      );
+    // return this.loginService
+    //   .refresh(filterObject({ refresh_token: this.tokenService.getRefreshToken() }))
+    //   .pipe(
+    //     catchError(() => of(undefined)),
+    //     tap(token => this.tokenService.set(token)),
+    //     map(() => this.check())
+    //   );
   }
 
   logout() {
-    return this.loginService.logout().pipe(
+    // return this.loginService.logout().pipe(
+    //   tap(() => this.tokenService.clear()),
+    //   map(() => !this.check())
+    // );
+
+    this.tokenService.clear();
+
+    return new Observable().pipe(
       tap(() => this.tokenService.clear()),
       map(() => !this.check())
     );

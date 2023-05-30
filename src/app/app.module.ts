@@ -22,8 +22,6 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-import { LoginService } from '@core/authentication/login.service';
-import { FakeLoginService } from './fake-login.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
@@ -40,7 +38,6 @@ import 'prismjs/components/prism-css';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    FormsModule,
     MarkdownModule.forRoot(),
     HttpClientModule,
     CoreModule,
@@ -61,7 +58,6 @@ import 'prismjs/components/prism-css';
   ],
   providers: [
     { provide: BASE_URL, useValue: environment.baseUrl },
-    { provide: LoginService, useClass: FakeLoginService }, // <= Remove it in the real APP
     httpInterceptorProviders,
     appInitializerProviders,
   ],

@@ -5,7 +5,7 @@ export abstract class BaseToken {
   constructor(protected attributes: Token) {}
 
   get access_token(): string {
-    return this.attributes.access_token;
+    return this.attributes.token;
   }
 
   get refresh_token(): string | void {

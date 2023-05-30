@@ -14,8 +14,8 @@ export class LoginComponent {
   isSubmitting = false;
 
   loginForm = this.fb.nonNullable.group({
-    username: ['ng-matero', [Validators.required]],
-    password: ['ng-matero', [Validators.required]],
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
     rememberMe: [false],
   });
 
@@ -38,21 +38,21 @@ export class LoginComponent {
 
     this.auth
       .login(this.username.value, this.password.value, this.rememberMe.value)
-      .pipe(filter(authenticated => authenticated))
+      .pipe(filter(isAuthenticated => isAuthenticated))
       .subscribe(
-        () => {}, //this.router.navigateByUrl('/'),
-        (errorRes: HttpErrorResponse) => {
-          if (errorRes.status === 422) {
-            const form = this.loginForm;
-            const errors = errorRes.error.errors;
-            Object.keys(errors).forEach(key => {
-              form.get(key === 'email' ? 'username' : key)?.setErrors({
-                remote: errors[key][0],
-              });
-            });
-          }
-          this.isSubmitting = false;
-        }
+        () => this.router.navigateByUrl('/')
+        // (errorRes: HttpErrorResponse) => {
+        //   if (errorRes.status === 422) {
+        //     const form = this.loginForm;
+        //     const errors = errorRes.error.errors;
+        //     Object.keys(errors).forEach(key => {
+        //       form.get(key === 'email' ? 'username' : key)?.setErrors({
+        //         remote: errors[key][0],
+        //       });
+        //     });
+        //   }
+        //   this.isSubmitting = false;
+        // }
       );
   }
 }
