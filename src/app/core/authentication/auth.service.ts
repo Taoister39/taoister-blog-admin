@@ -55,13 +55,17 @@ export class AuthService {
     //   tap(() => this.tokenService.clear()),
     //   map(() => !this.check())
     // );
+    // this.tokenService.clear();
+    // return new Observable().pipe(
+    //   tap(() => this.tokenService.clear()),
+    //   map(() => !this.check())
+    // );
 
-    this.tokenService.clear();
-
-    return new Observable().pipe(
-      tap(() => this.tokenService.clear()),
-      map(() => !this.check())
-    );
+    return new Observable<boolean>(observable => {
+      this.tokenService.clear();
+      observable.next(!this.check());
+      observable.complete();
+    });
   }
 
   user() {

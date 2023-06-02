@@ -78,7 +78,12 @@
     "permissions.role-switching": "切換角色",
     "permissions.route-guard": "路由守衛",
     "permissions.test": "權限測試",
-    "about": "關於"
+    "about": "關於",
+    "article": "文章",
+    "article.create": "文章創建",
+    "article.list": "文章列表",
+    "article.category": "文章分類",
+    "article.tags": "文章標籤"
   },
   "validations": {
     "required": "該字段必填",

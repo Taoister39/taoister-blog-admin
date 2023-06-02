@@ -49,7 +49,29 @@
       "route": "article",
       "name": "article",
       "type": "sub",
-      "children": []
+      "icon": "article",
+      "children": [
+        {
+          "name": "create",
+          "route": "create",
+          "type": "link"
+        },
+        {
+          "name": "list",
+          "route": "list",
+          "type": "link"
+        },
+        {
+          "name": "category",
+          "route": "category",
+          "type": "link"
+        },
+        {
+          "name": "tags",
+          "route": "tags",
+          "type": "link"
+        }
+      ]
     }
   ]
 }
