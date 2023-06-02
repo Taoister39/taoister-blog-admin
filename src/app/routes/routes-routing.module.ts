@@ -13,7 +13,6 @@ import { Error500Component } from './sessions/500.component';
 import { AuthGuard } from '@core';
 import { AboutComponent } from 'app/routes/about/about.component';
 import { ProfileComponent } from 'app/routes/profile/profile.component';
-import { ArticleComponent } from 'app/routes/article/article.component';
 
 const routes: Routes = [
   {
@@ -40,8 +39,7 @@ const routes: Routes = [
       },
       {
         path: 'article',
-        component: ArticleComponent,
-        children: [],
+        loadChildren: () => import('./article/article.module').then(m => m.ArticleModule),
       },
     ],
   },
