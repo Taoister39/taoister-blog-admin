@@ -1,4 +1,3 @@
-import { MarkdownModule } from 'ngx-markdown';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ArticleCreateComponent } from './create/create.component';

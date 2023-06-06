@@ -5,11 +5,4 @@
   <button mat-raised-button (click)="handleGetAbout()" color="primary">獲取</button>
 </div>
 
-<div class="fill-body">
-  <textarea rows="20" [(ngModel)]="markdown"></textarea>
-  <markdown [data]="markdown"></markdown>
-</div>
-
-<input type="file" hidden value="点我" #myMdFile accept=".md" (change)="loadFileMd(myMdFile)" />
-
-<button mat-raised-button color="primary" (click)="myMdFile.click()">文件</button>
+<app-markdown-editor [content]="mdRenderContent" [isShowReadFileButton]="true" />

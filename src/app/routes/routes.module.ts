@@ -10,7 +10,6 @@ import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
-import { MarkdownModule } from 'ngx-markdown';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -23,7 +22,7 @@ const COMPONENTS: any[] = [
 const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
-  imports: [SharedModule, RoutesRoutingModule, MarkdownModule.forChild()],
+  imports: [SharedModule, RoutesRoutingModule],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, AboutComponent, ProfileComponent],
 })
 export class RoutesModule {}

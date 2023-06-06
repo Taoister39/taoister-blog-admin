@@ -12,7 +12,7 @@ export class AboutComponent implements OnInit {
   private id!: string;
   private content!: string;
 
-  public markdown = '';
+  public mdRenderContent = '';
 
   ngOnInit(): void {
     this.aboutService.getAbout().subscribe(data => {
@@ -23,24 +23,12 @@ export class AboutComponent implements OnInit {
   handleSaveAbout() {
     if (this.id) {
       // 对于所有 HttpClient 方法，在你在方法返回的 Observable 上调用 subscribe() 之前，该方法都不会开始其 HTTP 请求。
-      this.aboutService.updateAbout(this.id, { content: this.markdown }).subscribe();
+      this.aboutService.updateAbout(this.id, { content: this.mdRenderContent }).subscribe();
     } else {
-      this.aboutService.createAbout({ content: this.markdown }).subscribe();
+      this.aboutService.createAbout({ content: this.mdRenderContent }).subscribe();
     }
   }
   handleGetAbout() {
-    this.markdown = this.content;
-  }
-
-  loadFileMd(inputRef: HTMLInputElement) {
-    const file: File | undefined = inputRef?.files?.[0];
-
-    if (file) {
-      const reader: FileReader = new FileReader();
-      reader.readAsText(file);
-      reader.onload = e => {
-        this.markdown = reader.result as string;
-      };
-    }
+    this.mdRenderContent = this.content;
   }
 }

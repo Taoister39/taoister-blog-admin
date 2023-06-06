@@ -21,6 +21,8 @@ import { ErrorCodeComponent } from './components/error-code/error-code.component
 import { DisableControlDirective } from './directives/disable-control.directive';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { ToObservablePipe } from './pipes/to-observable.pipe';
+import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 const MODULES: any[] = [
   CommonModule,
@@ -37,8 +39,14 @@ const MODULES: any[] = [
   NgxPermissionsModule,
   ToastrModule,
   TranslateModule,
+  MarkdownModule.forChild(),
 ];
-const COMPONENTS: any[] = [BreadcrumbComponent, PageHeaderComponent, ErrorCodeComponent];
+const COMPONENTS: any[] = [
+  BreadcrumbComponent,
+  PageHeaderComponent,
+  ErrorCodeComponent,
+  MarkdownEditorComponent,
+];
 const COMPONENTS_DYNAMIC: any[] = [];
 const DIRECTIVES: any[] = [DisableControlDirective];
 const PIPES: any[] = [SafeUrlPipe, ToObservablePipe];
