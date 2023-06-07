@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { CreateProfileReq, Profile, UpdateProfileReq } from 'app/models/profile';
+import { PROFILE_URL } from 'constants/path';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
-  private PROFiLE_URL = environment.adminApiUrl + '/profile';
+  private PROFiLE_URL = environment.adminApiUrl + PROFILE_URL;
 
   constructor(private request: HttpClient) {}
 

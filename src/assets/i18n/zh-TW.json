@@ -142,5 +142,9 @@
   "register_title": "創建您的帳戶只需幾秒鐘",
   "read_and_agree": "我已閱讀並同意服務條款",
   "have_an_account": "已經有帳號了",
-  "restore_defaults": "還原配置"
+  "restore_defaults": "還原配置",
+  "create_article": "創建文章",
+  "article_list": "文章列表",
+  "article_category": "文章分類",
+  "article_tag": "文章標籤"
 }

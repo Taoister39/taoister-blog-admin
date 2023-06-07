@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { About, CreateAboutReq, UpdateAboutReq } from 'app/models/about';
+import { ABOUT_URL } from 'constants/path';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AboutService {
-  private ABOUT_URL = environment.adminApiUrl + '/about';
+  private ABOUT_URL = environment.adminApiUrl + ABOUT_URL;
 
   constructor(private request: HttpClient) {}
 
