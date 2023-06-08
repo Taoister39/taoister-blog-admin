@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { PostService } from 'app/services/post.service';
 
 @Component({
   selector: 'app-article-create',
@@ -9,12 +10,12 @@ import { FormBuilder } from '@angular/forms';
 export class ArticleCreateComponent implements OnInit {
   content = '';
 
-  createForm = this.formBuilder.group({
+  reactiveForm = this.formBuilder.group({
     title: [''],
-    category: null,
+    description: [''],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private postService: PostService) {}
 
   ngOnInit() {}
 }
