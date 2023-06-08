@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-article-create',
@@ -8,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class ArticleCreateComponent implements OnInit {
   content = '';
 
-  constructor() {}
+  createForm = this.formBuilder.group({
+    title: [''],
+    category: null,
+  });
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {}
 }

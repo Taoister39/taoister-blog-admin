@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { About, CreateAboutReq, UpdateAboutReq } from 'app/models/about';
+import { ApiResponse } from 'app/models/api';
 import { ABOUT_URL } from 'constants/path';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AboutService {
   constructor(private request: HttpClient) {}
 
   getAbout() {
-    return this.request.get<About>(this.ABOUT_URL);
+    return this.request.get<ApiResponse<About>>(this.ABOUT_URL);
   }
 
   createAbout(data: CreateAboutReq) {

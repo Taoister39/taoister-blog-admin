@@ -5,6 +5,7 @@ import { Menu, admin } from '@core';
 import { map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { of } from 'rxjs';
+import { ApiResponse } from 'app/models/api';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,10 @@ export class LoginService {
   constructor(protected http: HttpClient) {}
 
   login(username: string, password: string, rememberMe = false) {
-    return this.http.post<Token>(`${this.AUTH_URL}/login`, { email: username, password });
+    return this.http.post<ApiResponse<Token>>(`${this.AUTH_URL}/login`, {
+      email: username,
+      password,
+    });
   }
 
   refresh(params: Record<string, any>) {

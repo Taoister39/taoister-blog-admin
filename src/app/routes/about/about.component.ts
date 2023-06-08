@@ -16,8 +16,8 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     this.aboutService.getAbout().subscribe(data => {
-      this.id = data.id;
-      this.content = data.content;
+      this.id = data.data?.id ?? '';
+      this.content = data.data?.content ?? '';
     });
   }
   handleSaveAbout() {
