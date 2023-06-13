@@ -4,7 +4,10 @@ import { ArticleRoutingModule } from './article-routing.module';
 import { ArticleCreateComponent } from './create/create.component';
 import { ArticleListComponent } from './list/list.component';
 import { ArticleTagsComponent } from './tags/tags.component';
-import { ArticleCategoryComponent } from './category/category.component';
+import {
+  ArticleCategoryComponent,
+  ArticleCategoryDialogComponent,
+} from './category/category.component';
 import { MarkdownModule } from 'ngx-markdown';
 
 const COMPONENTS: any[] = [
@@ -12,6 +15,7 @@ const COMPONENTS: any[] = [
   ArticleListComponent,
   ArticleTagsComponent,
   ArticleCategoryComponent,
+  ArticleCategoryDialogComponent,
 ];
 const COMPONENTS_DYNAMIC: any[] = [];
 

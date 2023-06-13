@@ -18,4 +18,12 @@ export class ArticleCreateComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private postService: PostService) {}
 
   ngOnInit() {}
+
+  publish() {
+    if (!this.reactiveForm.valid) return;
+
+    return;
+
+    // this.postService.create();
+  }
 }

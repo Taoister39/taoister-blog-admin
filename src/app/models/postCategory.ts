@@ -16,6 +16,7 @@ export interface PostCategory {
   description?: string;
   createdAt?: string;
   updatedAt?: string;
+  isDeleted?: IS_DELETED_ENUM;
 }
 
 export interface FindManyPostCategoryReq extends PaginationReq {

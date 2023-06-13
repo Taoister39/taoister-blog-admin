@@ -10,7 +10,7 @@ export interface ListApiResponse<T> {
   code: CodeEnum;
   message: string;
   data: {
-    items?: T;
+    lists?: T[];
     totalItems: number;
   };
 }

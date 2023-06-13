@@ -1,3 +1,59 @@
 <page-header></page-header>
 
-<p>category works!</p>
+<button mat-raised-button color="primary" class="add-button" (click)="openCreate()">
+  新建文章標籤
+</button>
+
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="reactiveForm" (submit)="searchCategory()">
+      <mat-form-field class="col-4">
+        <mat-label>文章標籤id</mat-label>
+        <input matInput formControlName="id" placeholder="請輸入" />
+        <mat-error *ngIf="reactiveForm.get('id')?.status">請輸入id</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>文章標籤名稱</mat-label>
+        <input matInput formControlName="name" placeholder="請輸入" />
+        <mat-error *ngIf="reactiveForm.get('name')?.status">請輸入名字</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>軟刪除</mat-label>
+        <mat-select formControlName="isDeleted">
+          <mat-option [value]="-1">全部</mat-option>
+          <mat-option [value]="0">否</mat-option>
+          <mat-option [value]="1">是</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="d-flex justify-content-end">
+        <button mat-raised-button class="m-r-12" (click)="reset()">重置</button>
+        <button mat-raised-button color="primary" type="submit">查詢</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- <mat-card>
+  <mat-card-content> -->
+<mtx-grid
+  [columns]="columns"
+  [data]="lists"
+  [pageSize]="total"
+  [pageIndex]="page"
+  [pageSizeOptions]="[5, 10, 50, 100]"
+  [loading]="isLoading"
+  [columnSortable]="true"
+  [showToolbar]="true"
+  toolbarTitle="文章標籤列表"
+  [cellTemplate]="{ isDeleted: isDeletedTpl }"
+>
+</mtx-grid>
+<!-- </mat-card-content>
+</mat-card> -->
+
+<ng-template #isDeletedTpl let-row let-index="index" let-col="colDef">
+  <mat-slide-toggle
+    [checked]="row.isDeleted === 1"
+    (change)="toggleChangeIsDeleted(row)"
+  ></mat-slide-toggle>
+</ng-template>

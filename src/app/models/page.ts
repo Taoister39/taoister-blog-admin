@@ -1,4 +1,4 @@
 export interface PaginationReq {
-  limit?: string;
-  offset?: string;
+  limit?: number;
+  offset?: number;
 }

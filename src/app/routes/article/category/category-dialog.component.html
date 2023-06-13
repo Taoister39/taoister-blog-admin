@@ -1,0 +1,29 @@
+<div mat-dialog-title>
+  <h1>{{ data.isCreate ? '新建' : '修改' }}文章標籤</h1>
+</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="createCategoryForm">
+    <mat-form-field class="w-full">
+      <mat-label> 文章標籤名稱 </mat-label>
+      <input matInput formControlName="name" placeholder="請輸入" />
+      <mat-error *ngIf="createCategoryForm.get('name')?.status">請輸入名稱</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label> 文章標籤描述 </mat-label>
+      <textarea formControlName="description" matInput placeholder="請輸入"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="isClosed"
+    (click)="submit()"
+    type="submit"
+  >
+    提交
+  </button>
+</div>
