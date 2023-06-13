@@ -1,5 +1,5 @@
 <div class="markdown-editor">
-  <textarea rows="20" [(ngModel)]="content"></textarea>
+  <textarea rows="20" [(ngModel)]="content" (ngModelChange)="setContent(content)"></textarea>
   <markdown [data]="content"></markdown>
 </div>
 

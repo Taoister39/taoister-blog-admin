@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-markdown-editor',
@@ -13,12 +13,18 @@ export class MarkdownEditorComponent {
       const reader: FileReader = new FileReader();
       reader.readAsText(file);
       reader.onload = e => {
-        this.content = reader.result as string;
+        this.setContent(reader.result as string);
       };
     }
   }
-  
-  @Input() content = '';
+
+  @Input() content!: string;
+  @Output() contentChange = new EventEmitter<string>();
 
   @Input() isShowReadFileButton = false;
+
+  setContent(content: string) {
+    this.content = content;
+    this.contentChange.emit(content);
+  }
 }

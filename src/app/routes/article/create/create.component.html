@@ -6,12 +6,13 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form class="form-field-full" (ngSubmit)="publish()" [formGroup]="reactiveForm">
+    <form class="form-field-full" [formGroup]="reactiveForm">
       <div class="row">
         <div class="col-6">
           <mat-form-field>
             <mat-label>文章的标题</mat-label>
             <input matInput formControlName="title" />
+            <mat-error>請輸入標題</mat-error>
           </mat-form-field>
         </div>
         <div class="col-6">
@@ -22,19 +23,35 @@
                 {{ type.label }}
               </mat-option>
             </mat-select>
+            <mat-error>請選擇文章類型</mat-error>
           </mat-form-field>
         </div>
         <div class="col-6">
           <mat-form-field>
             <mat-label>文章分類</mat-label>
+            <mat-chip-grid #categoryChip>
+              <mat-chip-row
+                *ngFor="let category of selectedCategories"
+                [removable]="true"
+                (removed)="removeSelectedCategory(category)"
+              >
+                {{ category.name }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip-row>
+            </mat-chip-grid>
             <input
+              [matChipInputFor]="categoryChip"
               matInput
               [matAutocomplete]="auto"
               formControlName="category"
-              (input)="inputCategoryChange()"
+              (input)="getCategoryList()"
             />
             <mat-autocomplete #auto>
-              <mat-option *ngFor="let category of categories" [value]="category.id">
+              <mat-option
+                *ngFor="let category of categories"
+                (onSelectionChange)="onCategorySelected(category)"
+                [value]="category"
+              >
                 {{ category.name }}
               </mat-option>
             </mat-autocomplete>
@@ -44,7 +61,28 @@
         <div class="col-6">
           <mat-form-field>
             <mat-label>文章標籤</mat-label>
-            <input matInput [matAutocomplete]="auto" />
+            <mat-chip-grid #tagChip>
+              <mat-chip-row
+                *ngFor="let tag of selectedTags"
+                [removable]="true"
+                (removed)="removeSelectedTag(tag)"
+              >
+                {{ tag.name }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip-row>
+            </mat-chip-grid>
+            <input
+              matInput
+              [matAutocomplete]="tagsAuto"
+              formControlName="tag"
+              [matChipInputFor]="tagChip"
+              (input)="getTagList()"
+            />
+            <mat-autocomplete #tagsAuto>
+              <mat-option *ngFor="let tag of tags" (onSelectionChange)="onTagSelect(tag)">{{
+                tag.name
+              }}</mat-option>
+            </mat-autocomplete>
           </mat-form-field>
         </div>
 
@@ -58,10 +96,10 @@
     </form>
 
     <mat-card-title>文章內容</mat-card-title>
-    <app-markdown-editor [content]="content" [isShowReadFileButton]="true" />
+    <app-markdown-editor [(content)]="content" [isShowReadFileButton]="true" />
   </mat-card-content>
   <mat-card-actions align="end" class="action-container">
-    <button mat-raised-button color="accent">重置</button>
-    <button mat-raised-button color="primary">提交</button>
+    <button mat-raised-button color="accent" (click)="reactiveForm.reset()">重置</button>
+    <button mat-raised-button color="primary" (click)="publish()">提交</button>
   </mat-card-actions>
 </mat-card>

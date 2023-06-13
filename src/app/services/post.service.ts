@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
+import { ApiResponse } from 'app/models/api';
 import { CreatePostReq, FindPostReq, UpdatePostReq } from 'app/models/post';
 import { POST_URL } from 'constants/path';
 
@@ -13,7 +14,7 @@ export class PostService {
   constructor(private httpClient: HttpClient) {}
 
   create(createPostReq: CreatePostReq) {
-    return this.httpClient.post(this.POST_URL, createPostReq);
+    return this.httpClient.post<ApiResponse<unknown>>(this.POST_URL, createPostReq);
   }
 
   findMany(findPostReq: FindPostReq) {

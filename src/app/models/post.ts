@@ -14,6 +14,7 @@ export interface CreatePostReq {
   content: string;
   categories?: string[];
   tags?: string[];
+  type: POST_TYPE_ENUM;
 }
 
 export interface Post {
