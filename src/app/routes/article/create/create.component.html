@@ -17,15 +17,26 @@
         <div class="col-6">
           <mat-form-field>
             <mat-label>文章類型</mat-label>
-            <mat-select></mat-select>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let type of articleTypes" [value]="type.value">
+                {{ type.label }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
         <div class="col-6">
           <mat-form-field>
             <mat-label>文章分類</mat-label>
-            <input matInput [matAutocomplete]="auto" />
+            <input
+              matInput
+              [matAutocomplete]="auto"
+              formControlName="category"
+              (input)="inputCategoryChange()"
+            />
             <mat-autocomplete #auto>
-              <mat-option> abcd </mat-option>
+              <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </mat-option>
             </mat-autocomplete>
           </mat-form-field>
         </div>
@@ -34,16 +45,13 @@
           <mat-form-field>
             <mat-label>文章標籤</mat-label>
             <input matInput [matAutocomplete]="auto" />
-            <mat-autocomplete #auto>
-              <mat-option> abcd </mat-option>
-            </mat-autocomplete>
           </mat-form-field>
         </div>
 
         <div class="col-12">
           <mat-form-field>
             <mat-label>文章的描述</mat-label>
-            <input matInput formControlName="description" />
+            <textarea matInput formControlName="description"></textarea>
           </mat-form-field>
         </div>
       </div>
@@ -52,7 +60,7 @@
     <mat-card-title>文章內容</mat-card-title>
     <app-markdown-editor [content]="content" [isShowReadFileButton]="true" />
   </mat-card-content>
-  <mat-card-actions class="action-container">
+  <mat-card-actions align="end" class="action-container">
     <button mat-raised-button color="accent">重置</button>
     <button mat-raised-button color="primary">提交</button>
   </mat-card-actions>

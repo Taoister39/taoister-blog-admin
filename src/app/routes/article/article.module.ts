@@ -3,7 +3,7 @@ import { SharedModule } from '@shared/shared.module';
 import { ArticleRoutingModule } from './article-routing.module';
 import { ArticleCreateComponent } from './create/create.component';
 import { ArticleListComponent } from './list/list.component';
-import { ArticleTagsComponent } from './tags/tags.component';
+import { ArticleTagDialogComponent, ArticleTagsComponent } from './tags/tags.component';
 import {
   ArticleCategoryComponent,
   ArticleCategoryDialogComponent,
@@ -14,6 +14,7 @@ const COMPONENTS: any[] = [
   ArticleCreateComponent,
   ArticleListComponent,
   ArticleTagsComponent,
+  ArticleTagDialogComponent,
   ArticleCategoryComponent,
   ArticleCategoryDialogComponent,
 ];

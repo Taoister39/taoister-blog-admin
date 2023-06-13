@@ -16,11 +16,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ArticleCategoryComponent implements OnInit {
   columns: MtxGridColumn[] = [
-    { header: '文章標籤id', field: 'id' },
-    { header: '文章標籤名字', field: 'name' },
-    { header: '裝標籤描述', field: 'description' },
-    { header: '文章標籤創建時間', field: 'createdAt', sortable: true },
-    { header: '文章標籤更新時間', field: 'updatedAt', sortable: true },
+    { header: '文章分類id', field: 'id' },
+    { header: '文章分類名字', field: 'name' },
+    { header: '文章分類描述', field: 'description' },
+    { header: '文章分類創建時間', field: 'createdAt', sortable: true },
+    { header: '文章分類更新時間', field: 'updatedAt', sortable: true },
     { header: '軟刪除', field: 'isDeleted' },
     {
       header: '操作',
@@ -204,7 +204,7 @@ export class ArticleCategoryDialogComponent implements OnInit {
     const { name, description } = this.createCategoryForm.value;
 
     if (!name) {
-      this.snackBar.open('請輸入文章標籤名');
+      this.snackBar.open('請輸入文章分類名');
       return;
     }
 
