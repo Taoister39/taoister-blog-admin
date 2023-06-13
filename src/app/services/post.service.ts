@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { ApiResponse } from 'app/models/api';
-import { CreatePostReq, FindPostReq, UpdatePostReq } from 'app/models/post';
+import { ApiResponse, ListApiResponse } from 'app/models/api';
+import { CreatePostReq, FindPostReq, Post, UpdatePostReq } from 'app/models/post';
 import { POST_URL } from 'constants/path';
 
 @Injectable({
@@ -18,15 +18,15 @@ export class PostService {
   }
 
   findMany(findPostReq: FindPostReq) {
-    return this.httpClient.get(this.POST_URL);
+    return this.httpClient.get<ListApiResponse<Post>>(this.POST_URL);
   }
 
   findOne(id: string) {
-    return this.httpClient.get(`${this.POST_URL}/${id}`);
+    return this.httpClient.get<ApiResponse<Post>>(`${this.POST_URL}/${id}`);
   }
 
   update(id: string, updatePostReq: UpdatePostReq) {
-    return this.httpClient.patch(`${this.POST_URL}/${id}`, updatePostReq);
+    return this.httpClient.patch<ApiResponse<unknown>>(`${this.POST_URL}/${id}`, updatePostReq);
   }
 
   delete(id: string) {

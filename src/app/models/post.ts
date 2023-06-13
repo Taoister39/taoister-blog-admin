@@ -1,3 +1,4 @@
+import { PaginationReq } from 'app/models/page';
 import { PostCategory } from 'app/models/postCategory';
 import { PostTag } from 'app/models/postTag';
 import {
@@ -37,7 +38,7 @@ export type UpdatePostReq = Partial<
   CreatePostReq & { isDeleted: IS_DELETED_ENUM; isPublished?: IS_PUBLISHED_ENUM }
 >;
 
-export interface FindPostReq {
+export interface FindPostReq extends PaginationReq {
   id?: string;
   title?: string;
   type?: POST_TYPE_ENUM;

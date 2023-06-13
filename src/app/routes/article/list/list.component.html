@@ -42,4 +42,33 @@
   </mat-card-content>
 </mat-card>
 
-<mtx-grid> </mtx-grid>
+<mtx-grid
+  [columns]="columns"
+  [data]="posts"
+  [pageSize]="limit"
+  [pageIndex]="offset"
+  [loading]="isLoading"
+  [columnSortable]="true"
+  [showToolbar]="true"
+  toolbarTitle="文章標籤列表"
+  [cellTemplate]="{ isDeleted: isDeletedTpl, categories: categoriesTpl, tags: tagsIpl }"
+>
+</mtx-grid>
+
+<ng-template #isDeletedTpl let-row let-index="index" let-col="colDef">
+  <mat-slide-toggle
+    [checked]="row.isDeleted === 1"
+    (change)="toggleChangeIsDeleted(row)"
+  ></mat-slide-toggle>
+</ng-template>
+<ng-template #categoriesTpl let-row let-index="index" let-col="colDef">
+  <mat-chip-grid>
+    <mat-chip-row *ngFor="let category of row.categories">{{ category.name }}</mat-chip-row>
+  </mat-chip-grid>
+</ng-template>
+
+<ng-template #tagsIpl let-row let-index="index" let-col="colDef">
+  <mat-chip-grid>
+    <mat-chip-row *ngFor="let tag of row.tags">{{ tag.name }}</mat-chip-row>
+  </mat-chip-grid>
+</ng-template>

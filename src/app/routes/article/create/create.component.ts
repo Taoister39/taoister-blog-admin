@@ -8,7 +8,8 @@ import { filter, map } from 'rxjs';
 import { CodeEnum, POST_TYPE_ENUM } from 'constants/enum';
 import { PostTagService } from 'app/services/post-tag.service';
 import { PostTag } from 'app/models/postTag';
-import { CreatePostReq } from 'app/models/post';
+import { CreatePostReq, UpdatePostReq } from 'app/models/post';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-article-create',
@@ -47,15 +48,33 @@ export class ArticleCreateComponent implements OnInit {
     },
   ];
 
+  id: string | undefined = undefined;
+
   constructor(
     private formBuilder: FormBuilder,
     private postService: PostService,
     private postCategoryService: PostCategoryService,
     private postTagService: PostTagService,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.id = this.activatedRoute.snapshot.queryParams.id ?? undefined;
+  }
+
+  update() {
+    if (!this.reactiveForm.valid) return;
+    const { title, description, type } = this.reactiveForm.value;
+
+    const updatePostReq: UpdatePostReq = {
+      title: title ?? '',
+      description: description ?? '',
+      type: type ?? POST_TYPE_ENUM.ORIGINAL,
+      content: this.content,
+    };
+  }
 
   publish() {
     if (!this.reactiveForm.valid) return;
