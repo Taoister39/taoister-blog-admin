@@ -8,7 +8,7 @@ import { filter, map } from 'rxjs';
 import { CodeEnum, POST_TYPE_ENUM } from 'constants/enum';
 import { PostTagService } from 'app/services/post-tag.service';
 import { PostTag } from 'app/models/postTag';
-import { CreatePostReq, UpdatePostReq } from 'app/models/post';
+import { CreatePostReq, Post, UpdatePostReq } from 'app/models/post';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -49,6 +49,7 @@ export class ArticleCreateComponent implements OnInit {
   ];
 
   id: string | undefined = undefined;
+  updatePost: Post | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,6 +63,20 @@ export class ArticleCreateComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.queryParams.id ?? undefined;
+    this.updatePost = this.router.getCurrentNavigation()?.extras?.state?.post as Post;
+
+    // console.log(this);
+    if (this.id && this.updatePost) {
+      this.reactiveForm.patchValue({
+        title: this.updatePost?.title,
+        description: this.updatePost?.description,
+        type: this.updatePost?.type,
+      });
+
+      this.content = this.updatePost?.content ?? '';
+      this.selectedTags = this.updatePost?.tags ?? [];
+      this.selectedCategories = this.updatePost?.categories ?? [];
+    }
   }
 
   update() {

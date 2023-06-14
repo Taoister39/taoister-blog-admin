@@ -30,8 +30,8 @@ export interface Post {
   createdAt: Date;
   updatedAt: Date;
   publishedAt?: Date;
-  categories?: PostTag[];
-  tags?: PostCategory[];
+  categories?: PostCategory[];
+  tags?: PostTag[];
 }
 
 export type UpdatePostReq = Partial<

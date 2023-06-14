@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { Post, FindPostReq } from 'app/models/post';
 import { filter, map } from 'rxjs';
-import { CodeEnum } from 'constants/enum';
+import { CodeEnum, IS_DELETED_ENUM, IS_PUBLISHED_ENUM } from 'constants/enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-list',
@@ -11,7 +12,7 @@ import { CodeEnum } from 'constants/enum';
   styleUrls: ['./list.component.scss'],
 })
 export class ArticleListComponent implements OnInit {
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private router: Router) {}
 
   columns: MtxGridColumn[] = [
     { header: '文章ID', field: 'id' },
@@ -37,7 +38,10 @@ export class ArticleListComponent implements OnInit {
           text: 'edit',
           icon: 'edit',
           tooltip: '編輯',
-          // click: (rowData: Post) => this.openUpdate(rowData),
+          click: (rowData: Post) =>
+            this.router.navigateByUrl(`/article/create?id=${rowData.id}`, {
+              state: { post: rowData },
+            }),
         },
         {
           type: 'icon',
@@ -49,7 +53,7 @@ export class ArticleListComponent implements OnInit {
             title: '確認要刪除？',
             description: '這個是真刪除',
           },
-          // click: (rowData: Post) => this.deleteTag(rowData.id),
+          click: (rowData: Post) => this.deletePost(rowData.id),
         },
       ],
     },
@@ -84,5 +88,31 @@ export class ArticleListComponent implements OnInit {
         this.isLoading = false;
       });
   }
-  toggleChangeIsDeleted(post: Post) {}
+  toggleChangeIsDeleted(post: Post) {
+    this.postService
+      .update(post.id, {
+        isDeleted: post.isDeleted === IS_DELETED_ENUM.NO ? IS_DELETED_ENUM.YES : IS_DELETED_ENUM.NO,
+      })
+      .pipe(
+        filter(res => res.code === CodeEnum.SUCCESS),
+        map(res => res.data)
+      )
+      .subscribe(() => this.getPostList());
+  }
+  toggleChangeIsPublished(post: Post) {
+    this.postService
+      .update(post.id, {
+        isPublished:
+          post.isPublished === IS_PUBLISHED_ENUM.NO ? IS_PUBLISHED_ENUM.YES : IS_PUBLISHED_ENUM.NO,
+      })
+      .pipe(
+        filter(res => res.code === CodeEnum.SUCCESS),
+        map(res => res.data)
+      )
+      .subscribe(() => this.getPostList());
+  }
+
+  deletePost(id: string) {
+    this.postService.delete(id).subscribe(() => this.getPostList());
+  }
 }

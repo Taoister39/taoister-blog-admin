@@ -51,7 +51,12 @@
   [columnSortable]="true"
   [showToolbar]="true"
   toolbarTitle="文章標籤列表"
-  [cellTemplate]="{ isDeleted: isDeletedTpl, categories: categoriesTpl, tags: tagsIpl }"
+  [cellTemplate]="{
+    isDeleted: isDeletedTpl,
+    categories: categoriesTpl,
+    tags: tagsIpl,
+    isPublished: isPublishedTpl
+  }"
 >
 </mtx-grid>
 
@@ -61,6 +66,14 @@
     (change)="toggleChangeIsDeleted(row)"
   ></mat-slide-toggle>
 </ng-template>
+
+<ng-template #isPublishedTpl let-row let-index="index" let-col="colDef">
+  <mat-slide-toggle
+    [checked]="row.isPublished === 1"
+    (change)="toggleChangeIsPublished(row)"
+  ></mat-slide-toggle>
+</ng-template>
+
 <ng-template #categoriesTpl let-row let-index="index" let-col="colDef">
   <mat-chip-grid>
     <mat-chip-row *ngFor="let category of row.categories">{{ category.name }}</mat-chip-row>
