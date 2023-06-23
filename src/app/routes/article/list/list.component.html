@@ -75,13 +75,13 @@
 </ng-template>
 
 <ng-template #categoriesTpl let-row let-index="index" let-col="colDef">
-  <mat-chip-grid>
-    <mat-chip-row *ngFor="let category of row.categories">{{ category.name }}</mat-chip-row>
-  </mat-chip-grid>
+  <mat-chip-listbox>
+    <mat-chip-option *ngFor="let category of row.categories">{{ category.name }}</mat-chip-option>
+  </mat-chip-listbox>
 </ng-template>
 
 <ng-template #tagsIpl let-row let-index="index" let-col="colDef">
-  <mat-chip-grid>
-    <mat-chip-row *ngFor="let tag of row.tags">{{ tag.name }}</mat-chip-row>
-  </mat-chip-grid>
+  <mat-chip-listbox>
+    <mat-chip-option *ngFor="let tag of row.tags">{{ tag.name }}</mat-chip-option>
+  </mat-chip-listbox>
 </ng-template>

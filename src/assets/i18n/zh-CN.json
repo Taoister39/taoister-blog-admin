@@ -77,7 +77,13 @@
     "permissions": "权限管理",
     "permissions.role-switching": "切换角色",
     "permissions.route-guard": "路由守卫",
-    "permissions.test": "权限测试"
+    "permissions.test": "权限测试",
+    "about": "关于",
+    "article": "文章",
+    "article.create": "文章创建",
+    "article.list": "文章列表",
+    "article.category": "文章分类",
+    "article.tags": "文章标签"
   },
   "validations": {
     "required": "该字段必填",

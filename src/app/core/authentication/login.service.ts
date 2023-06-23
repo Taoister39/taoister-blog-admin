@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Token, User } from './interface';
 import { Menu, admin } from '@core';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { of } from 'rxjs';
 import { ApiResponse } from 'app/models/api';
+import { ProfileService } from 'app/services/profile.service';
+import { CodeEnum } from 'constants/enum';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ import { ApiResponse } from 'app/models/api';
 export class LoginService {
   private AUTH_URL = environment.adminApiUrl + '/auth';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, private profileService: ProfileService) {}
 
   login(username: string, password: string, rememberMe = false) {
     return this.http.post<ApiResponse<Token>>(`${this.AUTH_URL}/login`, {
@@ -31,7 +33,12 @@ export class LoginService {
   // }
 
   me() {
-    return of(admin);
+    // return of(admin);
+    return this.profileService.getOne().pipe(
+      filter(res => res.code === CodeEnum.SUCCESS),
+      map(res => res.data),
+      map(data => ({ id: 1, name: data?.author, ...data }))
+    );
   }
 
   menu() {
