@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { ADMIN_API_URL } from '@core';
 import { environment } from '@env/environment';
 import { About, CreateAboutReq, UpdateAboutReq } from 'app/models/about';
 import { ApiResponse } from 'app/models/api';
@@ -9,9 +10,9 @@ import { ABOUT_URL } from 'constants/path';
   providedIn: 'root',
 })
 export class AboutService {
-  private ABOUT_URL = environment.adminApiUrl + ABOUT_URL;
+  private ABOUT_URL = this.ADMIN_URL + ABOUT_URL;
 
-  constructor(private request: HttpClient) {}
+  constructor(private request: HttpClient, @Inject(ADMIN_API_URL) private ADMIN_URL: string) {}
 
   getAbout() {
     return this.request.get<ApiResponse<About>>(this.ABOUT_URL);

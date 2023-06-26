@@ -5,7 +5,8 @@ import {
   UpdatePostCategoryReq,
 } from './../models/postCategory';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { ADMIN_API_URL } from '@core';
 import { environment } from '@env/environment';
 import { ApiResponse, ListApiResponse } from 'app/models/api';
 import { POST_CATEGORY_URL } from 'constants/path';
@@ -14,8 +15,8 @@ import { POST_CATEGORY_URL } from 'constants/path';
   providedIn: 'root',
 })
 export class PostCategoryService {
-  private POST_CATEGORY_URL = environment.adminApiUrl + POST_CATEGORY_URL;
-  constructor(private httpClient: HttpClient) {}
+  private POST_CATEGORY_URL = this.ADMIN_URL + POST_CATEGORY_URL;
+  constructor(private httpClient: HttpClient, @Inject(ADMIN_API_URL) private ADMIN_URL: string) {}
 
   create(createPostCategoryReq: CreatePostCategoryReq) {
     return this.httpClient.post<ApiResponse<PostCategory>>(

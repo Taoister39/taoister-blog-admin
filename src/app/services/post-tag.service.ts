@@ -1,6 +1,7 @@
 import { FindManyPostTagReq, PostTag, UpdatePostTagReq } from './../models/postTag';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { ADMIN_API_URL } from '@core';
 import { environment } from '@env/environment';
 import { ApiResponse, ListApiResponse } from 'app/models/api';
 import { CreatePostTagReq } from 'app/models/postTag';
@@ -10,9 +11,9 @@ import { POST_TAG_URL } from 'constants/path';
   providedIn: 'root',
 })
 export class PostTagService {
-  private POST_TAG_URL = environment.adminApiUrl + POST_TAG_URL;
+  private POST_TAG_URL = this.ADMIN_URL + POST_TAG_URL;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, @Inject(ADMIN_API_URL) private ADMIN_URL: string) {}
 
   create(createPostTagReq: CreatePostTagReq) {
     return this.httpClient.post<ApiResponse<unknown>>(this.POST_TAG_URL, createPostTagReq);

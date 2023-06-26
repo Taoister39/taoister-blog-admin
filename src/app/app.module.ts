@@ -15,7 +15,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '@env/environment';
-import { BASE_URL, httpInterceptorProviders, appInitializerProviders } from '@core';
+import { BASE_URL, httpInterceptorProviders, appInitializerProviders, ADMIN_API_URL } from '@core';
 
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
@@ -58,6 +58,7 @@ import 'prismjs/components/prism-css';
   ],
   providers: [
     { provide: BASE_URL, useValue: environment.baseUrl },
+    { provide: ADMIN_API_URL, useValue: environment.adminApiUrl },
     httpInterceptorProviders,
     appInitializerProviders,
   ],

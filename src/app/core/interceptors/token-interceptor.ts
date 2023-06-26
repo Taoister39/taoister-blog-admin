@@ -12,6 +12,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { TokenService } from '@core/authentication';
 import { BASE_URL } from './base-url-interceptor';
 import { environment } from '@env/environment';
+import { ADMIN_API_URL } from '@core/interceptors/admin-api-url.interceptor';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -20,6 +21,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private tokenService: TokenService,
     private router: Router,
+    @Inject(ADMIN_API_URL) private adminUrl: string,
     @Optional() @Inject(BASE_URL) private baseUrl?: string
   ) {}
 
@@ -71,7 +73,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private includeAdminApiUrl(url: string) {
-    if (url.includes(environment.adminApiUrl)) {
+    if (url.includes(this.adminUrl)) {
       return true;
     }
     return false;

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Token, User } from './interface';
 import { Menu, admin } from '@core';
@@ -13,9 +13,13 @@ import { CodeEnum } from 'constants/enum';
   providedIn: 'root',
 })
 export class LoginService {
-  private AUTH_URL = environment.adminApiUrl + '/auth';
+  private AUTH_URL = this.ADMIN_URL + '/auth';
 
-  constructor(protected http: HttpClient, private profileService: ProfileService) {}
+  constructor(
+    protected http: HttpClient,
+    private profileService: ProfileService,
+    @Inject('ADMIN_API_URL') private ADMIN_URL: string
+  ) {}
 
   login(username: string, password: string, rememberMe = false) {
     return this.http.post<ApiResponse<Token>>(`${this.AUTH_URL}/login`, {
