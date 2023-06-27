@@ -2,7 +2,7 @@ import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export const ADMIN_API_URL = new InjectionToken('ADMIN_API_URL');
+export const ADMIN_API_URL = new InjectionToken<string>('ADMIN_API_URL');
 
 @Injectable()
 /**

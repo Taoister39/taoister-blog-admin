@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Token, User } from './interface';
-import { Menu, admin } from '@core';
+import { ADMIN_API_URL, Menu, admin } from '@core';
 import { filter, map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { of } from 'rxjs';
@@ -18,7 +18,7 @@ export class LoginService {
   constructor(
     protected http: HttpClient,
     private profileService: ProfileService,
-    @Inject('ADMIN_API_URL') private ADMIN_URL: string
+    @Inject(ADMIN_API_URL) private ADMIN_URL: string
   ) {}
 
   login(username: string, password: string, rememberMe = false) {
