@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://www.qiacrkeng.top',
+  baseUrl: 'https://taoister.qiacrkeng.store/admin',
   useHash: false,
-  adminApiUrl: 'http://api.qiacrkeng.top',
+  adminApiUrl: 'https://taoister.qiacrkeng.store/ADMIN_API',
 };
