@@ -7,11 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:prod": "ng build --prod",
+    "build:prod": "ng build --base-href=/taoister-blog-admin/",
     "lint": "npm run lint:ts && npm run lint:scss",
     "lint:ts": "eslint \"src/**/*.ts\" --fix",
     "lint:scss": "stylelint \"src/**/*.scss\" --fix",
-    "hmr": "ng serve --hmr --disable-host-check"
+    "hmr": "ng serve --hmr --disable-host-check",
+    "pm2": "pm2 start 'npx serve ./dist/taoister-blog-admin/ -s -p 3920' --name taoister-blog-admin"
   },
   "private": true,
   "dependencies": {
